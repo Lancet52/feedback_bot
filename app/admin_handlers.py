@@ -4,10 +4,10 @@ from html import entities
 from aiogram import F, Router
 from aiogram.types import Message
 
-router_adminhandlers = Router()
+router_admin_handlers = Router()
 
 
-@router_adminhandlers.message(F.reply_to_message)
+@router_admin_handlers.message(F.reply_to_message)
 async def reply_to_user_text(message: Message):
     # Получение списка сущностей (entities) из текста или подписи к медиафайлу в отвечаемом сообщении
     entities = message.reply_to_message.entities or message.reply_to_message.caption_entities
