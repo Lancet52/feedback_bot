@@ -40,6 +40,13 @@ async def video_in(message: Message):
                                  parse_mode="html")
 
 
+@router_handlers.message(F.animation)
+async def animation_in(message: Message):
+    await message.bot.send_animation(chat_id=os.getenv('ADMIN_ID'), animation=message.animation.file_id,
+                                     caption=message.html_text + f"\n\nСообщение от: #id{message.from_user.id}\n<b>Никнейм:</b> @{message.from_user.username}\n<b>Имя:</b> {message.from_user.first_name}\n<b>Фамилия:</b> {message.from_user.last_name}",
+                                     parse_mode="html")
+
+
 @router_handlers.message(F.document)
 async def doc_in(message: Message):
     await message.bot.send_document(chat_id=os.getenv('ADMIN_ID'), document=message.document.file_id,
